@@ -7,6 +7,7 @@
     <color name="material_drawer_accent">#FFFFFF</color>
     <color name="material_drawer_accent_dark">#94FFFFFF</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorGray">#8D8D8D</color>
     <!-- OVERWRITE THESE COLORS FOR A LIGHT THEME -->
     <!-- MaterialDrawer DEFAULT colors -->
     <color name="material_drawer_background">#F9F9F9</color>
