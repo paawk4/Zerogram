@@ -46,6 +46,7 @@
 
     <EditText
         android:id="@+id/register_input_code"
+        android:layout_width="wrap_content"
         style="@style/editText"
         android:autofillHints=""
         android:gravity="center"

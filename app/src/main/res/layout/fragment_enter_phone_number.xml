@@ -9,7 +9,7 @@
     <EditText
         android:id="@+id/register_input_phone_number"
         style="@style/editText"
-        android:autofillHints=""
+        android:hint="@string/register_phone_hint"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

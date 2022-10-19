@@ -4,14 +4,11 @@ import androidx.fragment.app.Fragment
 import com.example.zerogram.MainActivity
 import com.example.zerogram.R
 import com.example.zerogram.activities.RegisterActivity
-import com.example.zerogram.utilities.AUTH
-import com.example.zerogram.utilities.AppTextWatcher
-import com.example.zerogram.utilities.replaceActivity
-import com.example.zerogram.utilities.showToast
+import com.example.zerogram.utilities.*
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.fragment_enter_code.*
 
-class EnterCodeFragment(val phoneNumber: String, val id: String) :
+class EnterCodeFragment(private val phoneNumber: String, val id: String) :
     Fragment(R.layout.fragment_enter_code) {
 
     override fun onStart() {
@@ -28,12 +25,25 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
     private fun enterCode() {
         val code = register_input_code.text.toString()
         val credential = PhoneAuthProvider.getCredential(id, code)
-        AUTH.signInWithCredential(credential).addOnCompleteListener {
-            if (it.isSuccessful) {
-                showToast("Добро пожаловать")
-                (activity as RegisterActivity).replaceActivity(MainActivity())
+        AUTH.signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val uid = AUTH.currentUser?.uid.toString()
+                val dateMap = mutableMapOf<String, Any>()
+                dateMap[CHILD_ID] = uid
+                dateMap[CHILD_PHONE] = phoneNumber
+                dateMap[CHILD_USERNAME] = uid
+
+                REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
+                    .addOnCompleteListener { task2 ->
+                        if (task2.isSuccessful) {
+                            showToast("Добро пожаловать")
+                            (activity as RegisterActivity).replaceActivity(MainActivity())
+                        } else {
+                            showToast(task2.exception?.message.toString())
+                        }
+                    }
             } else {
-                showToast(it.exception?.message.toString())
+                showToast(task.exception?.message.toString())
             }
         }
     }

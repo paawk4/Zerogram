@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.zerogram.R
 import com.example.zerogram.databinding.ActivityRegisterBinding
 import com.example.zerogram.ui.fragments.EnterPhoneNumberFragment
+import com.example.zerogram.utilities.initFirebase
 import com.example.zerogram.utilities.replaceFragment
 
 class RegisterActivity : AppCompatActivity() {
@@ -15,6 +16,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        initFirebase()
     }
 
     override fun onStart() {
