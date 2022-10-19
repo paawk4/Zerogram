@@ -6,6 +6,8 @@
         <item name="colorPrimaryDark">@color/material_drawer_primary_dark</item>
         <item name="colorAccent">@color/material_drawer_accent</item>
         <item name="android:colorBackground">@color/material_drawer_accent</item>
+        <item name="popupTheme">@style/ActionMenu</item>
+        <item name="colorControlActivated">@color/material_drawer_primary</item>
         <!-- MaterialDrawer specific values -->
         <item name="material_drawer_background">@color/material_drawer_background</item>
         <item name="material_drawer_primary_text">@color/material_drawer_primary_text</item>
@@ -20,5 +22,8 @@
         <item name="material_drawer_header_selection_subtext">@color/material_drawer_dark_header_selection_subtext</item>
         <item name="material_drawer_legacy_style">false</item> <!-- Enables legacy Material 1 style -->
     </style>
-
+    <style name="ActionMenu" parent="Theme.AppCompat.Light">
+        <item name="background">@color/material_drawer_accent</item>
+        <item name="actionMenuTextColor">@color/colorBlack</item>
+    </style>
 </resources>

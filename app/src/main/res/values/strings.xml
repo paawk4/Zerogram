@@ -11,4 +11,12 @@
     <string name="settings_label_login">Имя пользователя</string>
     <string name="settings_default_bio">О себе</string>
     <string name="settings_label_bio">Напишите немного о себе</string>
+    <string name="settings_menu_change_name">Изменить имя</string>
+    <string name="settings_menu_exit">Выйти</string>
+    <string name="cd_register_image">cdregisterImage</string>
+    <string name="register_text_enter_code">Введите код</string>
+    <string name="register_text_we_sent">Мы отправили вам смс с кодом проверки на ваш телефон</string>
+    <string name="register_hint_default_code">- - - - - -</string>
+    <string name="register_title_your_phone">Ваш телефон</string>
+    <string name="register_toast_enter_phone">Введите номер телефона</string>
 </resources>

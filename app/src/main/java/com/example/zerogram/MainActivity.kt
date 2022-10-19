@@ -1,11 +1,16 @@
 package com.example.zerogram
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.zerogram.activities.RegisterActivity
 import com.example.zerogram.databinding.ActivityMainBinding
 import com.example.zerogram.ui.fragments.ChatsFragment
 import com.example.zerogram.ui.objects.AppDrawer
+import com.example.zerogram.utilities.AUTH
+import com.example.zerogram.utilities.replaceActivity
+import com.example.zerogram.utilities.replaceFragment
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,17 +31,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        setSupportActionBar(mToolbar)
-        mAppDrawer.create()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.dataContainer, ChatsFragment()).commit()
-
+        if (AUTH.currentUser != null){
+            setSupportActionBar(mToolbar)
+            mAppDrawer.create()
+            replaceFragment(ChatsFragment(),false)
+        } else {
+            replaceActivity(RegisterActivity())
+        }
     }
 
 
     private fun initFields() {
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(this, mToolbar)
-
+        AUTH = FirebaseAuth.getInstance()
     }
 }
