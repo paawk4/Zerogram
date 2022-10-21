@@ -5,12 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.zerogram.activities.RegisterActivity
 import com.example.zerogram.databinding.ActivityMainBinding
+import com.example.zerogram.models.User
 import com.example.zerogram.ui.fragments.ChatsFragment
 import com.example.zerogram.ui.objects.AppDrawer
-import com.example.zerogram.utilities.AUTH
-import com.example.zerogram.utilities.initFirebase
-import com.example.zerogram.utilities.replaceActivity
-import com.example.zerogram.utilities.replaceFragment
+import com.example.zerogram.utilities.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,5 +43,13 @@ class MainActivity : AppCompatActivity() {
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(this, mToolbar)
         initFirebase()
+        initUser()
+    }
+
+    private fun initUser() {
+        REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
+            .addListenerForSingleValueEvent(AppValueEventListener {
+                USER = it.getValue(User::class.java) ?: User()
+            })
     }
 }
