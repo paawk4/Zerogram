@@ -40,9 +40,10 @@
             app:layout_constraintTop_toTopOf="@id/settings_user_photo"
             app:layout_constraintStart_toEndOf="@id/settings_user_photo"/>
         <TextView
+            android:id="@+id/settings_status"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/settings_default_status"
+            tools:text="@string/settings_default_status"
             android:textColor="@color/material_drawer_accent_dark"
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="@dimen/smallText"
@@ -73,7 +74,7 @@
             android:id="@+id/settings_phone_number"
             app:layout_constraintTop_toTopOf="@id/settings_btn_change_number_phone"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/settings_default_number"
+            tools:text="@string/settings_default_number"
             style="@style/normalText" />
         <TextView
             android:id="@+id/settings_label_phone_number"
@@ -98,7 +99,7 @@
             android:id="@+id/settings_username"
             app:layout_constraintTop_toTopOf="@id/settings_btn_change_username"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/settings_default_login"
+            tools:text="@string/settings_default_login"
             style="@style/normalText" />
         <TextView
             android:id="@+id/settings_label_username"

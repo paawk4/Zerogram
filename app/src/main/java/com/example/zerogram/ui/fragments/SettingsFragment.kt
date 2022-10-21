@@ -7,14 +7,25 @@ import com.example.zerogram.MainActivity
 import com.example.zerogram.R
 import com.example.zerogram.activities.RegisterActivity
 import com.example.zerogram.utilities.AUTH
+import com.example.zerogram.utilities.USER
 import com.example.zerogram.utilities.replaceActivity
 import com.example.zerogram.utilities.replaceFragment
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
     override fun onResume() {
         super.onResume()
         setHasOptionsMenu(true)
+        initFields()
+    }
+
+    private fun initFields() {
+        settings_bio.text = USER.bio
+        settings_full_name.text = USER.fullname
+        settings_phone_number.text = USER.phone
+        settings_status.text = USER.status
+        settings_username.text = USER.username
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

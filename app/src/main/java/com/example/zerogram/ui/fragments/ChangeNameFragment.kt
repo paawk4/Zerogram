@@ -3,13 +3,12 @@ package com.example.zerogram.ui.fragments
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.fragment.app.Fragment
 import com.example.zerogram.MainActivity
 import com.example.zerogram.R
 import com.example.zerogram.utilities.*
 import kotlinx.android.synthetic.main.fragment_change_name.*
 
-class ChangeNameFragment : Fragment(R.layout.fragment_change_name) {
+class ChangeNameFragment : BaseFragment(R.layout.fragment_change_name) {
 
     override fun onResume() {
         super.onResume()
