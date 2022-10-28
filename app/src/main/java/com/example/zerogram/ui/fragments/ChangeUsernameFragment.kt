@@ -33,7 +33,7 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
 
     private fun changeUserName() {
         REF_DATABASE_ROOT.child(NODE_USERNAMES).child(mNewUsername).setValue(CURRENT_UID)
-            .addOnCompleteListener() {
+            .addOnCompleteListener {
                 if (it.isSuccessful) {
                     updateCurrentUsername()
                 }

@@ -5,7 +5,4 @@ import com.example.zerogram.R
 
 class ChatsFragment : Fragment(R.layout.fragment_chats) {
 
-    override fun onResume() {
-        super.onResume()
-    }
 }
