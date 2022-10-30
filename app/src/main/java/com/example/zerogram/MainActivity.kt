@@ -10,6 +10,9 @@ import com.example.zerogram.databinding.ActivityMainBinding
 import com.example.zerogram.ui.fragments.ChatsFragment
 import com.example.zerogram.ui.objects.AppDrawer
 import com.example.zerogram.utilities.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,15 +27,10 @@ class MainActivity : AppCompatActivity() {
         APP_ACTIVITY = this
         initFirebase()
         initUser {
+            CoroutineScope(Dispatchers.IO).launch {  }
             initContacts()
             initFields()
             initFunc()
-        }
-    }
-
-    private fun initContacts() {
-        if(checkPermission(READ_CONTACTS)){
-            showToast("Чтение контактов")
         }
     }
 
