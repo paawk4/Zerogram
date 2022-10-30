@@ -60,6 +60,7 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
                     showToast(getString(R.string.toast_data_update))
                     fragmentManager?.popBackStack()
                     USER.username = mNewUsername
+                    hideKeyboard()
                 } else {
                     showToast(it.exception?.message.toString())
                 }
