@@ -4,6 +4,7 @@
     <color name="material_drawer_primary">#956A80</color>
     <color name="material_drawer_primary_dark">#A1956A80</color>
     <color name="material_drawer_primary_light">#956A80</color>
+    <color name="colorPink">#F1D8E5</color>
     <color name="material_drawer_accent">#FFFFFF</color>
     <color name="material_drawer_accent_dark">#94FFFFFF</color>
     <color name="colorBlack">#000000</color>

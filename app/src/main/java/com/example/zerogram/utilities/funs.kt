@@ -24,17 +24,17 @@ fun AppCompatActivity.replaceFragment(fragment: Fragment, addStack: Boolean = tr
     if (addStack) {
         supportFragmentManager.beginTransaction()
             .addToBackStack(null)
-            .replace(R.id.dataContainer, fragment).commit()
+            .replace(R.id.data_container, fragment).commit()
     } else {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.dataContainer, fragment).commit()
+            .replace(R.id.data_container, fragment).commit()
     }
 }
 
 fun Fragment.replaceFragment(fragment: Fragment) {
     this.fragmentManager?.beginTransaction()
         ?.addToBackStack(null)
-        ?.replace(R.id.dataContainer, fragment)?.commit()
+        ?.replace(R.id.data_container, fragment)?.commit()
 }
 
 fun hideKeyboard() {

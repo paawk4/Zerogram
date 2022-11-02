@@ -9,6 +9,7 @@ class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
     override fun onResume() {
         super.onResume()
         initFullnameList()
+        APP_ACTIVITY.title = "Изменить имя"
     }
 
     private fun initFullnameList() {

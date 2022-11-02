@@ -18,10 +18,14 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         super.onResume()
         setHasOptionsMenu(true)
         initFields()
+        APP_ACTIVITY.title = "Настройки"
     }
 
     private fun initFields() {
-        settings_bio.text = USER.bio
+        if (USER.bio != "") {
+            settings_bio.text = USER.bio
+        }
+
         settings_full_name.text = USER.fullname
         settings_phone_number.text = USER.phone
         settings_status.text = USER.state
@@ -58,7 +62,8 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
-            && resultCode == AppCompatActivity.RESULT_OK && data != null) {
+            && resultCode == AppCompatActivity.RESULT_OK && data != null
+        ) {
             val uri = CropImage.getActivityResult(data).uri
             val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
                 .child(CURRENT_UID)

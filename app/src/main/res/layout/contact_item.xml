@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_margin="@dimen/horizontal_margin"
+    android:layout_margin="@dimen/app_margin"
     style="@style/settings_btns"
     android:layout_height="wrap_content">
 
@@ -19,7 +19,7 @@
     <TextView
         android:id="@+id/contact_fullname"
         style="@style/normalText"
-        tools:text="JHON FUCK"
+        tools:text="Pavel Chetverikov"
         app:layout_constraintStart_toEndOf="@id/contact_photo"
         app:layout_constraintTop_toTopOf="parent"/>
 
