@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.net.Uri
 import android.provider.ContactsContract
 import com.example.zerogram.models.CommonModel
-import com.example.zerogram.models.User
+import com.example.zerogram.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
@@ -16,7 +16,7 @@ lateinit var AUTH: FirebaseAuth
 lateinit var CURRENT_UID: String
 lateinit var REF_DATABASE_ROOT: DatabaseReference
 lateinit var REF_STORAGE_ROOT: StorageReference
-lateinit var USER: User
+lateinit var USER: UserModel
 
 const val NODE_USERS = "users"
 const val NODE_USERNAMES = "usernames"
@@ -38,7 +38,7 @@ fun initFirebase() {
     REF_DATABASE_ROOT =
         FirebaseDatabase.getInstance("https://zerogram-30f60-default-rtdb.europe-west1.firebasedatabase.app/")
             .reference
-    USER = User()
+    USER = UserModel()
     CURRENT_UID = AUTH.currentUser?.uid.toString()
     REF_STORAGE_ROOT = FirebaseStorage.getInstance().reference
 }
@@ -62,7 +62,7 @@ inline fun putImageToStorage(uri: Uri, path: StorageReference, crossinline funct
 inline fun initUser(crossinline function: () -> Unit) {
     REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
         .addListenerForSingleValueEvent(AppValueEventListener {
-            USER = it.getValue(User::class.java) ?: User()
+            USER = it.getValue(UserModel::class.java) ?: UserModel()
             if (USER.username.isEmpty()) {
                 USER.username = CURRENT_UID
             }
@@ -116,3 +116,6 @@ fun updatePhonesToDatabase(arrayContacts: ArrayList<CommonModel>) {
 
 fun DataSnapshot.getCommonModel(): CommonModel =
     this.getValue(CommonModel::class.java) ?: CommonModel()
+
+fun DataSnapshot.getUserModel(): UserModel =
+    this.getValue(UserModel::class.java) ?: UserModel()
