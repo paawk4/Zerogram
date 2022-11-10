@@ -1,8 +1,6 @@
 package com.example.zerogram.utilities
 
-import android.annotation.SuppressLint
 import android.net.Uri
-import android.provider.ContactsContract
 import com.example.zerogram.models.CommonModel
 import com.example.zerogram.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
@@ -70,48 +68,26 @@ inline fun initUser(crossinline function: () -> Unit) {
         })
 }
 
-@SuppressLint("Range")
-fun initContacts() {
-    if (checkPermission(READ_CONTACTS)) {
-        val arrayContacts = arrayListOf<CommonModel>()
-        val cursor = APP_ACTIVITY.contentResolver.query(
-            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-            null,
-            null,
-            null,
-            null
-        )
-        cursor?.let {
-            while (it.moveToNext()) {
-                val fullName =
-                    it.getString(it.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
-                val phone =
-                    it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-                val newModel = CommonModel()
-                newModel.fullname = fullName
-                newModel.phone = phone.replace(Regex("[\\s, -]"), "")
-
-                arrayContacts.add(newModel)
-            }
-        }
-        cursor?.close()
-        updatePhonesToDatabase(arrayContacts)
-    }
-}
-
 fun updatePhonesToDatabase(arrayContacts: ArrayList<CommonModel>) {
-    REF_DATABASE_ROOT.child(NODE_PHONES).addListenerForSingleValueEvent(AppValueEventListener {
-        it.children.forEach { snapshot ->
-            arrayContacts.forEach { contact ->
-                if (snapshot.key == contact.phone) {
-                    REF_DATABASE_ROOT.child(NODE_PHONES_CONTACTS).child(CURRENT_UID)
-                        .child(snapshot.value.toString()).child(CHILD_ID)
-                        .setValue(snapshot.value.toString())
-                        .addOnFailureListener { showToast(it.message.toString()) }
+    if (AUTH.currentUser != null) {
+        REF_DATABASE_ROOT.child(NODE_PHONES).addListenerForSingleValueEvent(AppValueEventListener {
+            it.children.forEach { snapshot ->
+                arrayContacts.forEach { contact ->
+                    if (snapshot.key == contact.phone) {
+                        REF_DATABASE_ROOT.child(NODE_PHONES_CONTACTS).child(CURRENT_UID)
+                            .child(snapshot.value.toString()).child(CHILD_ID)
+                            .setValue(snapshot.value.toString())
+                            .addOnFailureListener { showToast(it.message.toString()) }
+
+                        REF_DATABASE_ROOT.child(NODE_PHONES_CONTACTS).child(CURRENT_UID)
+                            .child(snapshot.value.toString()).child(CHILD_FULLNAME)
+                            .setValue(contact.fullname)
+                            .addOnFailureListener { showToast(it.message.toString()) }
+                    }
                 }
             }
-        }
-    })
+        })
+    }
 }
 
 fun DataSnapshot.getCommonModel(): CommonModel =
