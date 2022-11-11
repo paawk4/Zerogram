@@ -1,7 +1,10 @@
 package com.example.zerogram.ui.fragments
 
 import com.example.zerogram.R
-import com.example.zerogram.utilities.*
+import com.example.zerogram.utilities.APP_ACTIVITY
+import com.example.zerogram.utilities.USER
+import com.example.zerogram.utilities.setNameToDatabase
+import com.example.zerogram.utilities.showToast
 import kotlinx.android.synthetic.main.fragment_change_name.*
 
 class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
@@ -29,16 +32,7 @@ class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
             showToast(getString(R.string.settings_toast_name_is_empty))
         } else {
             val fullname = "$name $surname"
-            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_FULLNAME).setValue(fullname)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        showToast(getString(R.string.toast_data_update))
-                        USER.fullname = fullname
-                        APP_ACTIVITY.mAppDrawer.updateHeader()
-                        hideKeyboard()
-                        fragmentManager?.popBackStack()
-                    }
-                }
+            setNameToDatabase(fullname)
         }
     }
 }

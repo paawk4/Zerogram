@@ -5,9 +5,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import com.example.zerogram.activities.RegisterActivity
 import com.example.zerogram.databinding.ActivityMainBinding
-import com.example.zerogram.ui.fragments.ChatsFragment
+import com.example.zerogram.ui.fragments.MainFragment
+import com.example.zerogram.ui.fragments.register.EnterPhoneNumberFragment
 import com.example.zerogram.ui.objects.AppDrawer
 import com.example.zerogram.utilities.*
 import kotlinx.coroutines.CoroutineScope
@@ -35,12 +35,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
+        setSupportActionBar(mToolbar)
         if (AUTH.currentUser != null) {
-            setSupportActionBar(mToolbar)
             mAppDrawer.create()
-            replaceFragment(ChatsFragment(), false)
+            replaceFragment(MainFragment(), false)
         } else {
-            replaceActivity(RegisterActivity())
+            replaceFragment(EnterPhoneNumberFragment(), false)
         }
     }
 
@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         AppStates.updateState(AppStates.ONLINE)
+
     }
 
     override fun onStop() {

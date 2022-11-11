@@ -1,13 +1,8 @@
-package com.example.zerogram.ui.fragments
+package com.example.zerogram.ui.fragments.register
 
 import androidx.fragment.app.Fragment
-import com.example.zerogram.MainActivity
 import com.example.zerogram.R
-import com.example.zerogram.activities.RegisterActivity
-import com.example.zerogram.utilities.AUTH
-import com.example.zerogram.utilities.replaceActivity
-import com.example.zerogram.utilities.replaceFragment
-import com.example.zerogram.utilities.showToast
+import com.example.zerogram.utilities.*
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
@@ -27,7 +22,7 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
                 AUTH.signInWithCredential(credential).addOnCompleteListener {
                     if (it.isSuccessful) {
                         showToast("Добро пожаловать")
-                        (activity as RegisterActivity).replaceActivity(MainActivity())
+                        restartActivity()
                     } else {
                         showToast(it.exception?.message.toString())
                     }
@@ -59,7 +54,7 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
             mPhoneNumber,
             60,
             TimeUnit.SECONDS,
-            activity as RegisterActivity,
+            APP_ACTIVITY,
             mCallback
         )
     }

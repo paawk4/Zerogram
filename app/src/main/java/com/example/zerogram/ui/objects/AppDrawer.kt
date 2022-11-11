@@ -8,10 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.zerogram.R
 import com.example.zerogram.ui.fragments.ContactsFragment
 import com.example.zerogram.ui.fragments.SettingsFragment
-import com.example.zerogram.utilities.APP_ACTIVITY
-import com.example.zerogram.utilities.USER
-import com.example.zerogram.utilities.downloadAndSetImage
-import com.example.zerogram.utilities.replaceFragment
+import com.example.zerogram.utilities.*
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -41,6 +38,7 @@ class AppDrawer{
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         APP_ACTIVITY.mToolbar.setNavigationOnClickListener {
             APP_ACTIVITY.supportFragmentManager.popBackStack()
+            hideKeyboard()
         }
     }
 
@@ -95,8 +93,10 @@ class AppDrawer{
 
     private fun clickToItem(position: Int){
         when (position){
-            4 ->  APP_ACTIVITY.replaceFragment(SettingsFragment())
-            2 -> APP_ACTIVITY.replaceFragment(ContactsFragment())
+            1 -> showToast("Туть пока ничего нет -_-")
+            2 -> replaceFragment(ContactsFragment())
+            3 -> showToast("Туть пока ничего нет -_-")
+            4 ->  replaceFragment(SettingsFragment())
         }
     }
 
