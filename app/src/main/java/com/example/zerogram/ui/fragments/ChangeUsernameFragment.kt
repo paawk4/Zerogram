@@ -7,7 +7,7 @@ import java.util.*
 
 class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_username) {
 
-    lateinit var mNewUsername: String
+    private lateinit var mNewUsername: String
 
     override fun onResume() {
         super.onResume()
