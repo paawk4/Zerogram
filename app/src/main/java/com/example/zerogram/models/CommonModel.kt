@@ -12,7 +12,8 @@ data class CommonModel(
     var text: String = "",
     var type: String = "",
     var from: String = "",
-    var timeStamp: Any = ""
+    var timeStamp: Any = "",
+    var imageUr: String = "empty"
 
 ) {
     override fun equals(other: Any?): Boolean {
