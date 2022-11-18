@@ -6,10 +6,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 const val READ_CONTACTS = android.Manifest.permission.READ_CONTACTS
-const val READ_IMAGES = android.Manifest.permission.READ_MEDIA_IMAGES
-const val READ_VIDEO = android.Manifest.permission.READ_MEDIA_VIDEO
-const val READ_AUDIO = android.Manifest.permission.READ_MEDIA_AUDIO
-const val READ_STORAGE = android.Manifest.permission.READ_EXTERNAL_STORAGE
+const val RECORD_AUDIO = android.Manifest.permission.RECORD_AUDIO
 const val PERMISSION_REQUEST = 200
 
 fun checkPermission(permission: String): Boolean {

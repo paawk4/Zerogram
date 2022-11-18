@@ -31,7 +31,7 @@
         android:textColorHint="@color/colorGray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/chat_btn_send_message"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/chat_btn_attach" />
 
     <ImageView
         android:id="@+id/chat_btn_send_message"
@@ -50,6 +50,17 @@
         android:layout_height="0dp"
         android:padding="@dimen/app_padding"
         android:src="@drawable/ic_attach"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/chat_input_message" />
+
+    <ImageView
+        android:id="@+id/chat_btn_voice"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/app_padding"
+        android:background="@color/material_drawer_background"
+        android:src="@drawable/ic_voice"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/chat_input_message" />
