@@ -1,6 +1,8 @@
 package com.example.zerogram.ui.fragments
 
 import com.example.zerogram.R
+import com.example.zerogram.database.USER
+import com.example.zerogram.database.setBioToDatabase
 import com.example.zerogram.utilities.*
 import kotlinx.android.synthetic.main.fragment_change_bio.*
 

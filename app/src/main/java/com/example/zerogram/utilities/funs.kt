@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.zerogram.MainActivity
 import com.example.zerogram.R
+import com.example.zerogram.database.updatePhonesToDatabase
 import com.example.zerogram.models.CommonModel
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat

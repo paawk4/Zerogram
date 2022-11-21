@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil.DiffResult
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zerogram.R
+import com.example.zerogram.database.CURRENT_UID
 import com.example.zerogram.models.CommonModel
 import com.example.zerogram.utilities.*
 import kotlinx.android.synthetic.main.message_item.view.*
@@ -60,13 +61,13 @@ class SingleChatAdapter : RecyclerView.Adapter<SingleChatAdapter.SingleChatHolde
         if (mlistMessagesCache[position].from == CURRENT_UID) {
             holder.blockReceivedImageMessage.visibility = View.GONE
             holder.blockUserImageMessage.visibility = View.VISIBLE
-            holder.chatUserImage.downloadAndSetImage(mlistMessagesCache[position].imageUrl)
+            holder.chatUserImage.downloadAndSetImage(mlistMessagesCache[position].fileUrl)
             holder.chatUserImageMessageTime.text =
                 mlistMessagesCache[position].timeStamp.toString().asTime()
         } else {
             holder.blockReceivedImageMessage.visibility = View.VISIBLE
             holder.blockUserImageMessage.visibility = View.GONE
-            holder.chatReceivedImage.downloadAndSetImage(mlistMessagesCache[position].imageUrl)
+            holder.chatReceivedImage.downloadAndSetImage(mlistMessagesCache[position].fileUrl)
             holder.chatReceivedImageMessageTime.text =
                 mlistMessagesCache[position].timeStamp.toString().asTime()
         }

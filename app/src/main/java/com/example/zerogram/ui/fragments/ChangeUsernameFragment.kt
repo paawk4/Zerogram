@@ -1,6 +1,7 @@
 package com.example.zerogram.ui.fragments
 
 import com.example.zerogram.R
+import com.example.zerogram.database.*
 import com.example.zerogram.utilities.*
 import kotlinx.android.synthetic.main.fragment_change_username.*
 import java.util.*

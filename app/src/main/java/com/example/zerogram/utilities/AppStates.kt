@@ -1,5 +1,7 @@
 package com.example.zerogram.utilities
 
+import com.example.zerogram.database.*
+
 enum class AppStates(val state: String) {
     ONLINE("В сети"),
     OFFLINE("Был недавно"),

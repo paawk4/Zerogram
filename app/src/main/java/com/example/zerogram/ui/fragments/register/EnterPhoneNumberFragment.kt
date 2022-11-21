@@ -2,6 +2,7 @@ package com.example.zerogram.ui.fragments.register
 
 import androidx.fragment.app.Fragment
 import com.example.zerogram.R
+import com.example.zerogram.database.AUTH
 import com.example.zerogram.utilities.*
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.PhoneAuthCredential

@@ -2,8 +2,8 @@ package com.example.zerogram.ui.fragments
 
 import com.example.zerogram.R
 import com.example.zerogram.utilities.APP_ACTIVITY
-import com.example.zerogram.utilities.USER
-import com.example.zerogram.utilities.setNameToDatabase
+import com.example.zerogram.database.USER
+import com.example.zerogram.database.setNameToDatabase
 import com.example.zerogram.utilities.showToast
 import kotlinx.android.synthetic.main.fragment_change_name.*
 

@@ -2,6 +2,7 @@ package com.example.zerogram.ui.fragments.single_chat
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.view.MotionEvent
 import android.view.View
 import android.widget.AbsListView
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.zerogram.R
+import com.example.zerogram.database.*
 import com.example.zerogram.models.CommonModel
 import com.example.zerogram.models.UserModel
 import com.example.zerogram.ui.fragments.BaseFragment
@@ -40,6 +42,8 @@ class SingleChatFragment(private val contact: CommonModel) :
     private lateinit var mSwipeRefreshLayout: SwipeRefreshLayout
     private lateinit var mLayoutManager: LinearLayoutManager
 
+    private lateinit var mAppVoiceRecorder: AppVoiceRecorder
+
     override fun onResume() {
         super.onResume()
         initFields()
@@ -49,6 +53,7 @@ class SingleChatFragment(private val contact: CommonModel) :
 
     @SuppressLint("ClickableViewAccessibility")
     private fun initFields() {
+        mAppVoiceRecorder = AppVoiceRecorder()
         mSwipeRefreshLayout = chat_swipe_refresh
         mLayoutManager = LinearLayoutManager(this.context)
         chat_input_message.addTextChangedListener(AppTextWatcher {
@@ -65,13 +70,19 @@ class SingleChatFragment(private val contact: CommonModel) :
 
         CoroutineScope(Dispatchers.IO).launch {
             chat_btn_voice.setOnTouchListener { v, event ->
-                if (checkPermission(RECORD_AUDIO)){
-                    if (event.action == MotionEvent.ACTION_DOWN){
+                if (checkPermission(RECORD_AUDIO)) {
+                    if (event.action == MotionEvent.ACTION_DOWN) {
                         // record
                         chat_input_message.setText("Запись")
-                    } else if (event.action == MotionEvent.ACTION_UP){
+                        val messageKey = getMessageKey(contact.id)
+                        mAppVoiceRecorder.startRecord(messageKey)
+                    } else if (event.action == MotionEvent.ACTION_UP) {
                         //stop record
                         chat_input_message.setText("")
+                        mAppVoiceRecorder.stopRecord {file, messageKey ->
+                            uploadFileToStorage(Uri.fromFile(file), messageKey, contact.id, TYPE_MESSAGE_VOICE)
+                            mSmoothScrollToPosition = true
+                        }
                     }
                 }
                 true
@@ -174,18 +185,9 @@ class SingleChatFragment(private val contact: CommonModel) :
             && resultCode == AppCompatActivity.RESULT_OK && data != null
         ) {
             val uri = CropImage.getActivityResult(data).uri
-            val messageKey =
-                REF_DATABASE_ROOT.child(NODE_MESSAGES).child(CURRENT_UID).child(contact.id)
-                    .push().key.toString()
-            val path = REF_STORAGE_ROOT.child(FOLDER_MESSAGE_IMAGE)
-                .child(messageKey)
-
-            putImageToStorage(uri, path) {
-                getUrlFromStorage(path) {
-                    sendMessageAsImage(contact.id, it, messageKey)
-                    mSmoothScrollToPosition = true
-                }
-            }
+            val messageKey = getMessageKey(contact.id)
+            uploadFileToStorage(uri, messageKey, contact.id, TYPE_MESSAGE_IMAGE)
+            mSmoothScrollToPosition = true
         }
     }
 
@@ -194,5 +196,10 @@ class SingleChatFragment(private val contact: CommonModel) :
         mToolbarInfo.visibility = View.GONE
         mRefUser.removeEventListener(mListenerInfoToolbar)
         mRefMessages.removeEventListener(mMessagesListener)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mAppVoiceRecorder.releaseRecorder()
     }
 }

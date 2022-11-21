@@ -5,6 +5,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import com.example.zerogram.database.AUTH
+import com.example.zerogram.database.initFirebase
+import com.example.zerogram.database.initUser
 import com.example.zerogram.databinding.ActivityMainBinding
 import com.example.zerogram.ui.fragments.MainFragment
 import com.example.zerogram.ui.fragments.register.EnterPhoneNumberFragment
