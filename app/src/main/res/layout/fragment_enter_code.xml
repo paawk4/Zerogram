@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/vertical_large_margin"
         android:contentDescription="@string/cd_register_image"
-        android:src="@drawable/register_image"
+        android:src="@drawable/ic_sms"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
