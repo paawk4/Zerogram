@@ -1,4 +1,4 @@
-package com.example.zerogram.ui.fragments
+package com.example.zerogram.ui.screens
 
 import android.view.Menu
 import android.view.MenuInflater

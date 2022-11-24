@@ -9,8 +9,8 @@ import com.example.zerogram.database.AUTH
 import com.example.zerogram.database.initFirebase
 import com.example.zerogram.database.initUser
 import com.example.zerogram.databinding.ActivityMainBinding
-import com.example.zerogram.ui.fragments.MainFragment
-import com.example.zerogram.ui.fragments.register.EnterPhoneNumberFragment
+import com.example.zerogram.ui.screens.MainFragment
+import com.example.zerogram.ui.screens.register.EnterPhoneNumberFragment
 import com.example.zerogram.ui.objects.AppDrawer
 import com.example.zerogram.utilities.*
 import kotlinx.coroutines.CoroutineScope

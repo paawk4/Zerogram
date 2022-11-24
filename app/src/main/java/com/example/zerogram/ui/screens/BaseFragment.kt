@@ -1,4 +1,4 @@
-package com.example.zerogram.ui.fragments
+package com.example.zerogram.ui.screens
 
 import androidx.fragment.app.Fragment
 import com.example.zerogram.utilities.APP_ACTIVITY

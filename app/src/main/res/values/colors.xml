@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Material DEFAULT colors -->
-    <color name="material_drawer_primary">#476CFF</color>
-    <color name="gray">#696969</color>
-    <color name="material_drawer_primary_dark">#2D47B1</color>
-    <color name="material_drawer_primary_light">#718DFB</color>
+    <color name="material_drawer_primary">#5f5792</color>
+    <color name="material_drawer_primary_dark">#635e77</color>
+    <color name="material_drawer_primary_light">#a49ec4</color>
     <color name="colorPink">#F1D8E5</color>
     <color name="material_drawer_accent">#FFFFFF</color>
     <color name="material_drawer_accent_dark">#94FFFFFF</color>
-    <color name="colorBlack">#000000</color>
-    <color name="colorGray">#8D8D8D</color>
+    <color name="receiving_message">#f5eefe</color>
 
     <!-- OVERWRITE THESE COLORS FOR A LIGHT THEME -->
     <!-- MaterialDrawer DEFAULT colors -->
-    <color name="material_drawer_background">#F6F8FF</color>
+    <color name="material_drawer_background">#f4eff5</color>
     <!-- Material DEFAULT text / items colors -->
     <color name="material_drawer_primary_text">@color/colorBlack</color>
     <color name="material_drawer_primary_icon">#8A000000</color>
@@ -26,5 +24,10 @@
     <color name="material_drawer_selected_text">#2196F3</color>
     <color name="material_drawer_header_selection_text">@color/material_drawer_accent</color>
     <color name="material_drawer_header_selection_subtext">@color/material_drawer_accent_dark</color>
+
+
+    <color name="colorBlack">#000000</color>
+    <color name="colorGray">#8D8D8D</color>
+    <color name="gray">#696969</color>
 
 </resources>

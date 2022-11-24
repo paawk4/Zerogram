@@ -7,8 +7,8 @@ import android.widget.ImageView
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.zerogram.R
 import com.example.zerogram.database.USER
-import com.example.zerogram.ui.fragments.ContactsFragment
-import com.example.zerogram.ui.fragments.SettingsFragment
+import com.example.zerogram.ui.screens.ContactsFragment
+import com.example.zerogram.ui.screens.SettingsFragment
 import com.example.zerogram.utilities.*
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder

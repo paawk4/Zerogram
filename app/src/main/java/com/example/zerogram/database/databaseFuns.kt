@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ServerValue
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.io.File
 
 fun initFirebase() {
     AUTH = FirebaseAuth.getInstance()
@@ -185,4 +186,11 @@ fun uploadFileToStorage(uri: Uri, messageKey: String, receivedId: String, typeMe
             sendMessageAsFile(receivedId, it, messageKey, typeMessage)
         }
     }
+}
+
+fun getFileFromStorage(mFile: File, fileUrl: String, function: () -> Unit) {
+    val path = REF_STORAGE_ROOT.storage.getReferenceFromUrl(fileUrl)
+    path.getFile(mFile)
+        .addOnSuccessListener { function() }
+        .addOnFailureListener { showToast(it.message.toString()) }
 }

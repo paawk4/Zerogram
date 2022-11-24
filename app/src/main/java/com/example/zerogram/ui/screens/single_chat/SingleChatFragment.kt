@@ -1,4 +1,4 @@
-package com.example.zerogram.ui.fragments.single_chat
+package com.example.zerogram.ui.screens.single_chat
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -14,7 +14,8 @@ import com.example.zerogram.R
 import com.example.zerogram.database.*
 import com.example.zerogram.models.CommonModel
 import com.example.zerogram.models.UserModel
-import com.example.zerogram.ui.fragments.BaseFragment
+import com.example.zerogram.ui.message_recycle_view.views.AppViewFactory
+import com.example.zerogram.ui.screens.BaseFragment
 import com.example.zerogram.utilities.*
 import com.google.firebase.database.DatabaseReference
 import com.theartofdev.edmodo.cropper.CropImage
@@ -41,7 +42,6 @@ class SingleChatFragment(private val contact: CommonModel) :
     private var mSmoothScrollToPosition = true
     private lateinit var mSwipeRefreshLayout: SwipeRefreshLayout
     private lateinit var mLayoutManager: LinearLayoutManager
-
     private lateinit var mAppVoiceRecorder: AppVoiceRecorder
 
     override fun onResume() {
@@ -109,11 +109,11 @@ class SingleChatFragment(private val contact: CommonModel) :
         mMessagesListener = AppChildEventListener {
             val message = it.getCommonModel()
             if (mSmoothScrollToPosition) {
-                mAdapter.addItemToBottom(message) {
+                mAdapter.addItemToBottom(AppViewFactory.getView(message)) {
                     mRecyclerView.smoothScrollToPosition(mAdapter.itemCount)
                 }
             } else {
-                mAdapter.addItemToTop(message) {
+                mAdapter.addItemToTop(AppViewFactory.getView(message)) {
                     mSwipeRefreshLayout.isRefreshing = false
                 }
             }
@@ -179,6 +179,7 @@ class SingleChatFragment(private val contact: CommonModel) :
         mToolbarInfo.toolbar_chat_status.text = mReceivingUser.state
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
@@ -201,5 +202,6 @@ class SingleChatFragment(private val contact: CommonModel) :
     override fun onDestroyView() {
         super.onDestroyView()
         mAppVoiceRecorder.releaseRecorder()
+        mAdapter.onDestroy()
     }
 }

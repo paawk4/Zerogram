@@ -1,4 +1,4 @@
-package com.example.zerogram.ui.fragments
+package com.example.zerogram.ui.screens
 
 import com.example.zerogram.R
 import com.example.zerogram.database.USER

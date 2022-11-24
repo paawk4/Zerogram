@@ -1,4 +1,4 @@
-package com.example.zerogram.ui.fragments
+package com.example.zerogram.ui.screens
 
 import android.content.Intent
 import android.view.Menu

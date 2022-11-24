@@ -1,4 +1,4 @@
-package com.example.zerogram.ui.fragments.register
+package com.example.zerogram.ui.screens.register
 
 import androidx.fragment.app.Fragment
 import com.example.zerogram.R

@@ -1,4 +1,4 @@
-package com.example.zerogram.ui.fragments
+package com.example.zerogram.ui.screens
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.zerogram.R
 import com.example.zerogram.database.*
 import com.example.zerogram.models.CommonModel
-import com.example.zerogram.ui.fragments.single_chat.SingleChatFragment
+import com.example.zerogram.ui.screens.single_chat.SingleChatFragment
 import com.example.zerogram.utilities.*
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
