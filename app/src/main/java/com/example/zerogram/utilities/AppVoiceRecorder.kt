@@ -3,6 +3,7 @@ package com.example.zerogram.utilities
 import android.media.MediaRecorder
 import java.io.File
 
+@Suppress("DEPRECATION")
 class AppVoiceRecorder {
     private val mMediaRecorder = MediaRecorder()
     private lateinit var mFile: File

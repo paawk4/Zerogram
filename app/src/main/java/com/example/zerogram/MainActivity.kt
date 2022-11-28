@@ -1,7 +1,9 @@
 package com.example.zerogram
 
+import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -13,6 +15,9 @@ import com.example.zerogram.ui.screens.MainFragment
 import com.example.zerogram.ui.screens.register.EnterPhoneNumberFragment
 import com.example.zerogram.ui.objects.AppDrawer
 import com.example.zerogram.utilities.*
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.storage.internal.Sleeper
+import com.mikepenz.materialdrawer.util.otherwise
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,6 +41,14 @@ class MainActivity : AppCompatActivity() {
             }
             initFields()
             initFunc()
+        }
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                return@addOnCompleteListener
+            }
+            val token = task.result
+            Log.e("TAG", "Token -> $token")
         }
     }
 
@@ -71,7 +84,11 @@ class MainActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(ContextCompat.checkSelfPermission(APP_ACTIVITY, READ_CONTACTS) == PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(
+                APP_ACTIVITY,
+                READ_CONTACTS
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
             initContacts()
         }
     }
