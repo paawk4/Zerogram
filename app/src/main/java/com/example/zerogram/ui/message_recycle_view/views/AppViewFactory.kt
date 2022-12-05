@@ -1,6 +1,7 @@
 package com.example.zerogram.ui.message_recycle_view.views
 
 import com.example.zerogram.models.CommonModel
+import com.example.zerogram.utilities.TYPE_MESSAGE_FILE
 import com.example.zerogram.utilities.TYPE_MESSAGE_IMAGE
 import com.example.zerogram.utilities.TYPE_MESSAGE_VOICE
 
@@ -19,6 +20,13 @@ class AppViewFactory {
                     message.from,
                     message.timeStamp.toString(),
                     message.fileUrl
+                )
+                TYPE_MESSAGE_FILE -> ViewFileMessage(
+                    message.id,
+                    message.from,
+                    message.timeStamp.toString(),
+                    message.fileUrl,
+                    message.text
                 )
                 else -> ViewTextMessage(
                     message.id,

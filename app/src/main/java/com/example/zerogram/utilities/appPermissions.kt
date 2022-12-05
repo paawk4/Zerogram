@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 
 const val READ_CONTACTS = android.Manifest.permission.READ_CONTACTS
 const val RECORD_AUDIO = android.Manifest.permission.RECORD_AUDIO
+const val WRITE_FILES = android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 
 const val PERMISSION_REQUEST = 200
 

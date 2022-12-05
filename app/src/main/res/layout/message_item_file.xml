@@ -13,32 +13,33 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/block_received_voice_message">
+        android:id="@+id/block_received_file_message">
 
         <ImageView
-            android:id="@+id/chat_received_btn_play"
+            android:id="@+id/chat_received_btn_download"
             android:layout_width="@dimen/chat_btn_width"
             android:layout_height="@dimen/chat_btn_height"
             android:paddingStart="5dp"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/ic_play_1"
+            android:src="@drawable/ic_file_recieved"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <ImageView
-            android:id="@+id/chat_received_btn_pause"
-            android:layout_width="@dimen/chat_btn_width"
-            android:layout_height="@dimen/chat_btn_height"
-            android:src="@drawable/ic_pause_1"
-            android:paddingStart="5dp"
-            android:layout_marginBottom="5dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/chat_received_file_name"
+            android:maxLines="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/material_drawer_primary"
+            tools:text = "fasko.asd"
+            app:layout_constraintBottom_toTopOf="@id/chat_received_file_message_time"
+            app:layout_constraintStart_toEndOf="@id/chat_received_btn_download"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
         
         <TextView
-            android:id="@+id/chat_received_voice_message_time"
+            android:id="@+id/chat_received_file_message_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="21:45"
@@ -48,6 +49,18 @@
             android:layout_marginEnd="@dimen/app_small_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
+        <ProgressBar
+            android:visibility="invisible"
+            android:id="@+id/chat_received_progress_bar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="@dimen/chat_btn_width"
+            android:layout_height="@dimen/chat_btn_width"
+            android:layout_margin="@dimen/app_small_margin"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,32 +70,46 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/block_user_voice_message">
+        android:id="@+id/block_user_file_message">
 
-        <ImageView
-            android:id="@+id/chat_user_btn_play"
+
+        <ProgressBar
+            android:visibility="invisible"
+
+            android:id="@+id/chat_user_progress_bar"
+
             android:layout_width="@dimen/chat_btn_width"
-            android:layout_height="@dimen/chat_btn_height"
-            android:src="@drawable/ic_play_2"
-            android:paddingStart="5dp"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:foregroundTint="@color/material_drawer_background"
+            android:layout_height="@dimen/chat_btn_width"
+            android:layout_margin="@dimen/app_small_margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
         <ImageView
-            android:id="@+id/chat_user_btn_pause"
+            android:id="@+id/chat_user_btn_download"
             android:layout_width="@dimen/chat_btn_width"
             android:layout_height="@dimen/chat_btn_height"
-            android:src="@drawable/ic_pause_2"
+            android:src="@drawable/ic_file_user"
             android:paddingStart="5dp"
             android:layout_marginBottom="5dp"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/chat_user_voice_message_time"
+            android:id="@+id/chat_user_file_name"
+            android:maxLines="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text = "Курсовая.docx"
+            android:textColor="@color/material_drawer_background"
+            app:layout_constraintBottom_toTopOf="@id/chat_user_file_message_time"
+            app:layout_constraintStart_toEndOf="@id/chat_user_btn_download"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/chat_user_file_message_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="21:45"

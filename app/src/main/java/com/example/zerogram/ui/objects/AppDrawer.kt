@@ -20,20 +20,20 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader
 import com.mikepenz.materialdrawer.util.DrawerImageLoader
 
-class AppDrawer{
+class AppDrawer {
     private lateinit var mDrawer: Drawer
     private lateinit var mHeader: AccountHeader
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mCurrentProfile: ProfileDrawerItem
 
-    fun create(){
+    fun create() {
         initLoader()
         createHeader()
         createDrawer()
         mDrawerLayout = mDrawer.drawerLayout
     }
 
-    fun disableDrawer(){
+    fun disableDrawer() {
         mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false
         APP_ACTIVITY.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
@@ -43,7 +43,7 @@ class AppDrawer{
         }
     }
 
-    fun enableDrawer(){
+    fun enableDrawer() {
         APP_ACTIVITY.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true
         APP_ACTIVITY.supportActionBar?.setDisplayHomeAsUpEnabled(false)
@@ -52,6 +52,7 @@ class AppDrawer{
             mDrawer.openDrawer()
         }
     }
+
     private fun createDrawer() {
         mDrawer = DrawerBuilder()
             .withActivity(APP_ACTIVITY)
@@ -80,7 +81,7 @@ class AppDrawer{
                     .withName("Настройки")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_menu_settings)
-            ).withOnDrawerItemClickListener(object :Drawer.OnDrawerItemClickListener{
+            ).withOnDrawerItemClickListener(object : Drawer.OnDrawerItemClickListener {
                 override fun onItemClick(
                     view: View?,
                     position: Int,
@@ -92,12 +93,21 @@ class AppDrawer{
             }).build()
     }
 
-    private fun clickToItem(position: Int){
-        when (position){
+    private fun clickToItem(position: Int) {
+        when (position) {
             1 -> showToast("Туть пока ничего нет -_-")
             2 -> replaceFragment(ContactsFragment())
-            3 -> showToast("Туть пока ничего нет -_-")
-            4 ->  replaceFragment(SettingsFragment())
+            3 -> {
+                showToast("Туть пока ничего нет -_-")
+//                FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+//                    if (!task.isSuccessful) {
+//                        return@addOnCompleteListener
+//                    }
+//                    val token = task.result
+//                    Log.e("TAG", "Token -> $token")
+//                }
+            }
+            4 -> replaceFragment(SettingsFragment())
         }
     }
 
@@ -115,7 +125,7 @@ class AppDrawer{
             ).build()
     }
 
-    fun updateHeader(){
+    fun updateHeader() {
         mCurrentProfile
             .withName(USER.fullname)
             .withEmail(USER.phone)
@@ -123,8 +133,8 @@ class AppDrawer{
         mHeader.updateProfile(mCurrentProfile)
     }
 
-    private fun initLoader(){
-        DrawerImageLoader.init(object :AbstractDrawerImageLoader(){
+    private fun initLoader() {
+        DrawerImageLoader.init(object : AbstractDrawerImageLoader() {
             override fun set(imageView: ImageView, uri: Uri, placeholder: Drawable) {
                 imageView.downloadAndSetImage(uri.toString())
             }
