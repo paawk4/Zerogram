@@ -9,3 +9,5 @@ const val TYPE_MESSAGE_TEXT = "text"
 const val TYPE_MESSAGE_VOICE = "voice"
 const val TYPE_MESSAGE_FILE = "file"
 const val PICK_FILE_REQUEST_CODE = 301
+
+const val TYPE_CHAT = "chat"

@@ -1,4 +1,4 @@
-package com.example.zerogram.ui.screens
+package com.example.zerogram.ui.screens.settings
 
 import android.content.Intent
 import android.view.Menu
@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.zerogram.R
 import com.example.zerogram.database.*
+import com.example.zerogram.ui.screens.BaseFragment
 import com.example.zerogram.utilities.*
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView

@@ -1,9 +1,10 @@
-package com.example.zerogram.ui.screens
+package com.example.zerogram.ui.screens.settings
 
 import com.example.zerogram.R
 import com.example.zerogram.database.USER
 import com.example.zerogram.database.setBioToDatabase
-import com.example.zerogram.utilities.*
+import com.example.zerogram.ui.screens.BaseChangeFragment
+import com.example.zerogram.utilities.APP_ACTIVITY
 import kotlinx.android.synthetic.main.fragment_change_bio.*
 
 class ChangeBioFragment : BaseChangeFragment(R.layout.fragment_change_bio){

@@ -12,7 +12,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/default_photo"
+        android:src="@drawable/ic_avatar"
         app:civ_circle_background_color="@color/material_drawer_accent"
         android:layout_height="@dimen/toolbar_image_height"/>
 

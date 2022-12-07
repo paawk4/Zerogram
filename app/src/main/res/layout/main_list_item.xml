@@ -8,7 +8,7 @@
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/contact_photo"
+        android:id="@+id/main_list_item_photo"
         android:layout_width="@dimen/settings_user_photo_width"
         android:layout_height="@dimen/settings_user_photo_height"
         android:src="@drawable/ic_avatar"
@@ -17,18 +17,18 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/contact_fullname"
+        android:id="@+id/main_list_item_fullname"
         style="@style/normalText"
         tools:text="Pavel Chetverikov"
-        app:layout_constraintStart_toEndOf="@id/contact_photo"
+        app:layout_constraintStart_toEndOf="@id/main_list_item_photo"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/contact_status"
+        android:id="@+id/main_list_item_last_message"
         style="@style/smallText"
-        tools:text="В сети"
-        app:layout_constraintStart_toEndOf="@id/contact_photo"
-        app:layout_constraintTop_toBottomOf="@id/contact_fullname"/>
+        tools:text="Last Message"
+        app:layout_constraintStart_toEndOf="@id/main_list_item_photo"
+        app:layout_constraintTop_toBottomOf="@id/main_list_item_fullname"/>
 
 
 

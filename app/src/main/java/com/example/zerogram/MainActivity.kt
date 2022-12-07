@@ -10,7 +10,7 @@ import com.example.zerogram.database.initFirebase
 import com.example.zerogram.database.initUser
 import com.example.zerogram.databinding.ActivityMainBinding
 import com.example.zerogram.ui.objects.AppDrawer
-import com.example.zerogram.ui.screens.MainFragment
+import com.example.zerogram.ui.screens.main_list.MainListFragment
 import com.example.zerogram.ui.screens.register.EnterPhoneNumberFragment
 import com.example.zerogram.utilities.*
 import kotlinx.coroutines.CoroutineScope
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(mToolbar)
         if (AUTH.currentUser != null) {
             mAppDrawer.create()
-            replaceFragment(MainFragment(), false)
+            replaceFragment(MainListFragment(), false)
         } else {
             replaceFragment(EnterPhoneNumberFragment(), false)
         }

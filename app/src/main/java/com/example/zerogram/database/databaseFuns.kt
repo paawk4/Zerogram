@@ -181,7 +181,13 @@ fun getMessageKey(id: String) =
     REF_DATABASE_ROOT.child(NODE_MESSAGES).child(CURRENT_UID).child(id)
         .push().key.toString()
 
-fun uploadFileToStorage(uri: Uri, messageKey: String, receivedId: String, typeMessage: String, fileName: String = "") {
+fun uploadFileToStorage(
+    uri: Uri,
+    messageKey: String,
+    receivedId: String,
+    typeMessage: String,
+    fileName: String = ""
+) {
     val path = REF_STORAGE_ROOT.child(FOLDER_FILES).child(messageKey)
     putFileToStorage(uri, path) {
         getUrlFromStorage(path) {
@@ -194,5 +200,26 @@ fun getFileFromStorage(mFile: File, fileUrl: String, function: () -> Unit) {
     val path = REF_STORAGE_ROOT.storage.getReferenceFromUrl(fileUrl)
     path.getFile(mFile)
         .addOnSuccessListener { function() }
+        .addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun saveToMainList(id: String, type: String) {
+    val refUser = "$NODE_MAIN_LIST/$CURRENT_UID/$id"
+    val refReceived = "$NODE_MAIN_LIST/$id/$CURRENT_UID"
+
+    val mapUser = hashMapOf<String, Any>()
+    val mapReceived = hashMapOf<String, Any>()
+
+    mapUser[CHILD_ID] = id
+    mapUser[CHILD_TYPE] = type
+
+    mapReceived[CHILD_ID] = CURRENT_UID
+    mapReceived[CHILD_TYPE] = type
+
+    val commonMap = hashMapOf<String, Any>()
+    commonMap[refUser] = mapUser
+    commonMap[refReceived] = mapReceived
+
+    REF_DATABASE_ROOT.updateChildren(commonMap)
         .addOnFailureListener { showToast(it.message.toString()) }
 }

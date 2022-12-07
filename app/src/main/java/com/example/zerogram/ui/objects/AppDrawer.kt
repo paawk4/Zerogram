@@ -8,7 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.zerogram.R
 import com.example.zerogram.database.USER
 import com.example.zerogram.ui.screens.ContactsFragment
-import com.example.zerogram.ui.screens.SettingsFragment
+import com.example.zerogram.ui.screens.settings.SettingsFragment
 import com.example.zerogram.utilities.*
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
@@ -65,7 +65,7 @@ class AppDrawer {
                     .withIconTintingEnabled(true)
                     .withName("Создать группу")
                     .withSelectable(false)
-                    .withIcon(R.drawable.ic_menu_create_groups),
+                    .withIcon(R.drawable.ic_menu_groups),
                 PrimaryDrawerItem().withIdentifier(101)
                     .withIconTintingEnabled(true)
                     .withName("Контакты")
