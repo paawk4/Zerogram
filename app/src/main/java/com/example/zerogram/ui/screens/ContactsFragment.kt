@@ -9,7 +9,10 @@ import com.example.zerogram.R
 import com.example.zerogram.database.*
 import com.example.zerogram.models.CommonModel
 import com.example.zerogram.ui.screens.single_chat.SingleChatFragment
-import com.example.zerogram.utilities.*
+import com.example.zerogram.utilities.APP_ACTIVITY
+import com.example.zerogram.utilities.AppValueEventListener
+import com.example.zerogram.utilities.downloadAndSetImage
+import com.example.zerogram.utilities.replaceFragment
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DatabaseReference
@@ -41,6 +44,7 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
             .setQuery(mRefContacts, CommonModel::class.java)
             .build()
         mAdapter = object : FirebaseRecyclerAdapter<CommonModel, ContactsHolder>(options) {
+
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsHolder {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.contact_item, parent, false)

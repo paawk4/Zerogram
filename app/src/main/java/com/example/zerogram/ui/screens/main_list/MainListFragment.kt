@@ -1,12 +1,15 @@
 package com.example.zerogram.ui.screens.main_list
 
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zerogram.R
 import com.example.zerogram.database.*
 import com.example.zerogram.models.CommonModel
+import com.example.zerogram.ui.screens.ContactsFragment
 import com.example.zerogram.utilities.APP_ACTIVITY
 import com.example.zerogram.utilities.AppValueEventListener
+import com.example.zerogram.utilities.replaceFragment
 import kotlinx.android.synthetic.main.fragment_main_list.*
 
 class MainListFragment : Fragment(R.layout.fragment_main_list) {
@@ -31,6 +34,14 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
 
         mRefMainList.addListenerForSingleValueEvent(AppValueEventListener {
             mListItems = it.children.map { it.getCommonModel() }
+            if (mListItems.isEmpty()) {
+                textSmb.visibility = View.VISIBLE
+                textSmb.setOnClickListener { replaceFragment(ContactsFragment()) }
+            }
+            else{
+                textSmb.visibility = View.GONE
+                textSmb.setOnClickListener(null)
+            }
             mListItems.forEach { model ->
 
                 mRefUsers.child(model.id).addListenerForSingleValueEvent(AppValueEventListener {

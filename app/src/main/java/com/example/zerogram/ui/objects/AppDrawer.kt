@@ -9,7 +9,10 @@ import com.example.zerogram.R
 import com.example.zerogram.database.USER
 import com.example.zerogram.ui.screens.ContactsFragment
 import com.example.zerogram.ui.screens.settings.SettingsFragment
-import com.example.zerogram.utilities.*
+import com.example.zerogram.utilities.APP_ACTIVITY
+import com.example.zerogram.utilities.downloadAndSetImage
+import com.example.zerogram.utilities.hideKeyboard
+import com.example.zerogram.utilities.replaceFragment
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -61,21 +64,11 @@ class AppDrawer {
             .withSelectedItem(-1)
             .withAccountHeader(mHeader)
             .addDrawerItems(
-                PrimaryDrawerItem().withIdentifier(100)
-                    .withIconTintingEnabled(true)
-                    .withName("Создать группу")
-                    .withSelectable(false)
-                    .withIcon(R.drawable.ic_menu_groups),
                 PrimaryDrawerItem().withIdentifier(101)
                     .withIconTintingEnabled(true)
                     .withName("Контакты")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_menu_contacts),
-                PrimaryDrawerItem().withIdentifier(102)
-                    .withIconTintingEnabled(true)
-                    .withName("Избранное")
-                    .withSelectable(false)
-                    .withIcon(R.drawable.ic_menu_favorites),
                 PrimaryDrawerItem().withIdentifier(103)
                     .withIconTintingEnabled(true)
                     .withName("Настройки")
@@ -95,19 +88,8 @@ class AppDrawer {
 
     private fun clickToItem(position: Int) {
         when (position) {
-            1 -> showToast("Туть пока ничего нет -_-")
-            2 -> replaceFragment(ContactsFragment())
-            3 -> {
-                showToast("Туть пока ничего нет -_-")
-//                FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-//                    if (!task.isSuccessful) {
-//                        return@addOnCompleteListener
-//                    }
-//                    val token = task.result
-//                    Log.e("TAG", "Token -> $token")
-//                }
-            }
-            4 -> replaceFragment(SettingsFragment())
+            1 -> replaceFragment(ContactsFragment())
+            2 -> replaceFragment(SettingsFragment())
         }
     }
 
