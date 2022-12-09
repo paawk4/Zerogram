@@ -52,7 +52,6 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation "androidx.annotation:annotation:1.5.0"
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
     implementation 'com.github.dhaval2404:imagepicker:2.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
 }
