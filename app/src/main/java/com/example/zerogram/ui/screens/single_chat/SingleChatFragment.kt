@@ -14,6 +14,7 @@ import com.example.zerogram.models.CommonModel
 import com.example.zerogram.models.UserModel
 import com.example.zerogram.ui.message_recycle_view.views.AppViewFactory
 import com.example.zerogram.ui.screens.BaseFragment
+import com.example.zerogram.ui.screens.main_list.MainListFragment
 import com.example.zerogram.utilities.*
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.database.DatabaseReference
@@ -243,6 +244,14 @@ class SingleChatFragment(private val contact: CommonModel) :
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.menu_clear_chat -> clearChat(contact.id){
+                showToast("Чат очищен")
+                replaceFragment(MainListFragment())
+            }
+            R.id.menu_delete_chat -> deleteChat(contact.id){
+                showToast("Чат удален")
+                replaceFragment(MainListFragment())
+            }
         }
         return true
     }
