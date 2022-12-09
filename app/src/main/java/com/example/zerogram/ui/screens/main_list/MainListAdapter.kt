@@ -21,7 +21,6 @@ class MainListAdapter : RecyclerView.Adapter<MainListAdapter.MainListHolder>() {
         val itemName: TextView = view.main_list_item_fullname
         val itemLastMessage: TextView = view.main_list_item_last_message
         val itemPhoto: CircleImageView = view.main_list_item_photo
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainListHolder {

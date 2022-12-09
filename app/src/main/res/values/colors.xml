@@ -30,4 +30,9 @@
     <color name="colorGray">#8D8D8D</color>
     <color name="gray">#696969</color>
 
+
+    <color name="ucrop_color_toolbar">@color/material_drawer_background</color>
+    <color name="ucrop_color_statusbar">@color/material_drawer_background</color>
+    <color name="ucrop_color_widget_active">@color/material_drawer_background</color>
+
 </resources>

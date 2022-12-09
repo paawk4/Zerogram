@@ -54,7 +54,11 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
                             if (tempList.isEmpty())
                                 newModel.lastMessage = "Тут пусто -_-"
                             else
-                                newModel.lastMessage = tempList[0].text
+                                when (tempList[0].type) {
+                                    "text" -> newModel.lastMessage = tempList[0].text
+                                    "file" -> newModel.lastMessage = "Файл"
+                                    "image" -> newModel.lastMessage = "Фото"
+                                }
 
                             if (newModel.fullname.isEmpty())
                                 newModel.fullname = newModel.phone

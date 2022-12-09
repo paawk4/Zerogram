@@ -16,9 +16,9 @@ import com.example.zerogram.ui.message_recycle_view.views.AppViewFactory
 import com.example.zerogram.ui.screens.BaseFragment
 import com.example.zerogram.ui.screens.main_list.MainListFragment
 import com.example.zerogram.utilities.*
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.database.DatabaseReference
-import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.choice_upload.*
 import kotlinx.android.synthetic.main.fragment_single_chat.*
@@ -114,10 +114,15 @@ class SingleChatFragment(private val contact: CommonModel) :
     }
 
     private fun attachImage() {
-        CropImage.activity()
-            .setAspectRatio(1, 1)
-            .setRequestedSize(600, 600)
-            .start(APP_ACTIVITY, this)
+        ImagePicker.with(this)
+            .crop(1F,1F)
+            .compress(1024)
+            .maxResultSize(600, 600)
+            .start()
+//        CropImage.activity()
+//            .setAspectRatio(1, 1)
+//            .setRequestedSize(600, 600)
+//            .start(APP_ACTIVITY, this)
     }
 
     private fun initRecycleView() {
@@ -208,8 +213,8 @@ class SingleChatFragment(private val contact: CommonModel) :
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null) {
             when (requestCode) {
-                CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
-                    val uri = CropImage.getActivityResult(data).uri
+                ImagePicker.REQUEST_CODE -> {
+                    val uri = data.data!!
                     val messageKey = getMessageKey(contact.id)
                     uploadFileToStorage(uri, messageKey, contact.id, TYPE_MESSAGE_IMAGE)
                     mSmoothScrollToPosition = true
