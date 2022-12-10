@@ -2,6 +2,13 @@
 
 Zerogram — это приложение для обмена сообщениями. Разработан с целью получения практических навыков разработки на Kotlin и работы с Firebase. Проект на ранней стадии разработки. Этот репозиторий содержит официальный исходный код приложения Zerogram для Android. 
 
+Стек технологий и библиотек:
+1. Firebase
+2. Picasso
+3. [MaterialDrawer](https://github.com/mikepenz/MaterialDrawer)
+4. [CircleImageView](https://github.com/hdodenhof/CircleImageView)
+5. [Image Picker](https://github.com/Dhaval2404/ImagePicker)
+
 ##
 
 ## Установка
