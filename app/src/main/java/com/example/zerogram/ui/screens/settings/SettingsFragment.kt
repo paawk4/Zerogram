@@ -43,11 +43,6 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             .compress(1024)
             .maxResultSize(600, 600)
             .start()
-//        CropImage.activity()
-//            .setAspectRatio(1, 1)
-//            .setRequestedSize(250, 250)
-//            .setCropShape(CropImageView.CropShape.OVAL)
-//            .start(APP_ACTIVITY, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -68,41 +63,27 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == ImagePicker.REQUEST_CODE
-            && resultCode == AppCompatActivity.RESULT_OK && data != null){
-            val uri: Uri = data.data!!
-            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
-                .child(CURRENT_UID)
+        try {
+            if (requestCode == ImagePicker.REQUEST_CODE
+                && resultCode == AppCompatActivity.RESULT_OK && data != null){
+                val uri: Uri = data.data!!
+                val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
+                    .child(CURRENT_UID)
 
-            putFileToStorage(uri, path) {
-                getUrlFromStorage(path) {
-                    putUrlToDatabase(it) {
-                        settings_user_photo.downloadAndSetImage(it)
-                        showToast(getString(R.string.toast_data_update))
-                        USER.photoUrl = it
-                        APP_ACTIVITY.mAppDrawer.updateHeader()
+                putFileToStorage(uri, path) {
+                    getUrlFromStorage(path) {
+                        putUrlToDatabase(it) {
+                            settings_user_photo.downloadAndSetImage(it)
+                            showToast(getString(R.string.toast_data_update))
+                            USER.photoUrl = it
+                            APP_ACTIVITY.mAppDrawer.updateHeader()
+                        }
                     }
                 }
             }
+        } catch (_: Exception){
+
         }
 
-//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
-//            && resultCode == AppCompatActivity.RESULT_OK && data != null
-//        ) {
-//            val uri = CropImage.getActivityResult(data).uri
-//            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
-//                .child(CURRENT_UID)
-//
-//            putFileToStorage(uri, path) {
-//                getUrlFromStorage(path) {
-//                    putUrlToDatabase(it) {
-//                        settings_user_photo.downloadAndSetImage(it)
-//                        showToast(getString(R.string.toast_data_update))
-//                        USER.photoUrl = it
-//                        APP_ACTIVITY.mAppDrawer.updateHeader()
-//                    }
-//                }
-//            }
-//        }
     }
 }

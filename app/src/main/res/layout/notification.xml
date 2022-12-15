@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/message_padding"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/notification_app_logo"
+            android:layout_marginLeft="@dimen/app_small_margin"
+            android:layout_marginTop="@dimen/app_small_margin"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_app_logo"/>
+        
+        <TextView
+            android:id="@+id/notification_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zerogram"
+            android:textColor="@color/material_drawer_primary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/notification_app_logo"
+            android:layout_marginLeft="@dimen/app_small_margin"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:id="@+id/notification_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="У вас новое сообщение!"
+            android:textColor="@color/colorGray"
+            android:textSize="20sp"
+            android:layout_below="@id/notification_title"
+            android:layout_toRightOf="@id/notification_app_logo"
+            android:layout_marginLeft="@dimen/app_small_margin"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -117,12 +117,7 @@ class SingleChatFragment(private val contact: CommonModel) :
         ImagePicker.with(this)
             .crop(1F,1F)
             .compress(1024)
-            .maxResultSize(600, 600)
             .start()
-//        CropImage.activity()
-//            .setAspectRatio(1, 1)
-//            .setRequestedSize(600, 600)
-//            .start(APP_ACTIVITY, this)
     }
 
     private fun initRecycleView() {
@@ -211,23 +206,28 @@ class SingleChatFragment(private val contact: CommonModel) :
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (data != null) {
-            when (requestCode) {
-                ImagePicker.REQUEST_CODE -> {
-                    val uri = data.data!!
-                    val messageKey = getMessageKey(contact.id)
-                    uploadFileToStorage(uri, messageKey, contact.id, TYPE_MESSAGE_IMAGE)
-                    mSmoothScrollToPosition = true
-                }
-                PICK_FILE_REQUEST_CODE -> {
-                    val uri = data.data
-                    val messageKey = getMessageKey(contact.id)
-                    val fileName = getFileNameFromUri(uri!!)
-                    uploadFileToStorage(uri, messageKey, contact.id, TYPE_MESSAGE_FILE, fileName)
-                    mSmoothScrollToPosition = true
+        try {
+            if (data != null) {
+                when (requestCode) {
+                    ImagePicker.REQUEST_CODE -> {
+                        val uri = data.data!!
+                        val messageKey = getMessageKey(contact.id)
+                        uploadFileToStorage(uri, messageKey, contact.id, TYPE_MESSAGE_IMAGE)
+                        mSmoothScrollToPosition = true
+                    }
+                    PICK_FILE_REQUEST_CODE -> {
+                        val uri = data.data
+                        val messageKey = getMessageKey(contact.id)
+                        val fileName = getFileNameFromUri(uri!!)
+                        uploadFileToStorage(uri, messageKey, contact.id, TYPE_MESSAGE_FILE, fileName)
+                        mSmoothScrollToPosition = true
+                    }
                 }
             }
+        } catch (_: Exception){
+
         }
+
     }
 
     override fun onPause() {

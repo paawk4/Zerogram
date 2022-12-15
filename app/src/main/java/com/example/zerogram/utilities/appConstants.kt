@@ -11,3 +11,6 @@ const val TYPE_MESSAGE_FILE = "file"
 const val PICK_FILE_REQUEST_CODE = 301
 
 const val TYPE_CHAT = "chat"
+
+const val CHANNEL_ID = "notification_channel"
+const val CHANNEL_NAME = "com.example.zerogram"
